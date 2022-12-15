@@ -1,0 +1,140 @@
+<form #customerForm="ngForm" (ngSubmit)="saveCustomerData(customer)" autocomplete="off">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title"> Create Customer</h3>
+        </div>
+
+
+
+        <div class="panel-body">
+
+            <div class="form-group" [class.has.error]="fullname.invalid && fullname.touched">
+                <label for="fullname">Fullname</label>
+                <input id="fullname" name="fullname" required type="text" class="form-control" [(ngModel)]="customer.name"
+                    #fullname="ngModel">
+                <span class="help-block" *ngIf="fullname.invalid && fullname.touched" required>
+                    Full name Required
+                </span>
+            </div>
+
+
+            <div class="form-group" [class.has.error]="emailControl.invalid && emailControl.touched">
+                <label for="email">Email</label>
+                <input id="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="email" type="text"
+                    class="form-control" [(ngModel)]="customer.email" #emailControl="ngModel" required>
+                <span class="help-block"
+                    *ngIf="emailControl.errors && emailControl.errors.required && emailControl.touched" >
+                    Email is Required
+                </span>
+                <span class="help-block" *ngIf="emailControl.errors && emailControl.errors.pattern && emailControl.touched">
+                    Email is Invalid
+                </span>
+            </div>
+
+
+            <!-- <table>
+                <tr>
+                    <td>FULL NAME FIELD</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>Touched: {{fullnameControl.touched}}</div>
+                        <div>Untouched: {{fullnameControl.untouched}}</div>
+                    </td>
+                    <td>
+                        <div>Prestine: {{fullnameControl.pristine}}</div>
+                        <div>Dirty: {{fullnameControl.dirty}}</div>
+                    </td>
+                    <td>
+                        <div>Valid :{{fullnameControl.valid}}</div>
+                        <div>Invalid :{{fullnameControl.invalid}}</div>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <table>
+                <tr>
+                    <td>FORM FIELD</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>Touched: {{customerForm.touched}}</div>
+                        <div>Untouched: {{customerForm.untouched}}</div>
+                    </td>
+                    <td>
+                        <div>Pristine: {{customerForm.pristine}}</div>
+                        <div>Dirty: {{customerForm.dirty}}</div>
+                    </td>
+                    <td>
+                        <div>Valid :{{customerForm.valid}}</div>
+                        <div>Invalid :{{customerForm.invalid}}</div>
+                    </td>
+                </tr>
+            </table> -->
+
+
+
+            <div class="form-group">
+                <label>Gender</label>
+                <div class="form-control">
+                    <label class="radio-inline">
+                        <input type="radio" name="gender" value="male" [(ngModel)]="customer.gender">Male
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="gender" value="female" [(ngModel)]="customer.gender">female
+                    </label>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="form-control">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" name="isActive" [(ngModel)]="customer.isActive">isActive
+                    </label>
+                </div>
+            </div>
+
+
+            <div class="form-group"  [class.has.error]="department.invalid && department.touched">
+                <label>Department</label>
+                <select #department="ngModel" class="form-control" id="department" name="department" appSelectorValidator required [(ngModel)]="customer.department">
+                    <option [value]="-1">Select Department</option>
+                    <option *ngFor="let dept of departments" [value]="dept.name">{{dept.name}}</option>
+                </select>
+                <span class="help-block" *ngIf="department.errors?.defaultValue && department.touched">
+                    Department is Required
+                </span>
+            </div>
+
+
+            <div class="form-group">
+                <label for="photoPath">Photo Path</label>
+                <input id="photoPath" name="photoPath" type="text" class="form-control" [(ngModel)]="customer.photoPath">
+            </div>
+
+
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" (click)="toggleImage()">
+                    {{previewPhoto ? "hide" : "show"}} Preview
+                </button>
+            </div>
+
+
+            <div class="form-group">
+                <img [src]="customer.photoPath" height="200" width="200" *ngIf="previewPhoto" />
+            </div>
+        </div>
+
+
+        <div class="panel-footer">
+            <button type="submit" class="btn btn-primary" [disabled]="customerForm.invalid">Save</button>
+        </div>
+
+    </div>
+</form>
+
+ Angular generated Form: {{customerForm.value | json}}
+ <br/>
+ <br/>
+ Our generated Form: {{customer | json}}

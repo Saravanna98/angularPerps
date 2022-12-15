@@ -1,0 +1,12 @@
+<h4>
+    {{dataFromChild}}
+</h4>
+
+
+<div  *ngFor="let customer of customers">
+    <app-display-customer [customer]="customer" (notify)="HandleNotify($event)"></app-display-customer>
+</div>
+<!-- <button class="btn btn-primary" (click)="nextCustomer()">Next Customer</button>
+<br/>
+<br/>
+<app-display-customer [customer]="customerToDisplay"></app-display-customer> -->
