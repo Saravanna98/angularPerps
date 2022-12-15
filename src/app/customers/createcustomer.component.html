@@ -10,8 +10,8 @@
 
             <div class="form-group" [class.has.error]="fullname.invalid && fullname.touched">
                 <label for="fullname">Fullname</label>
-                <input id="fullname" name="fullname" required type="text" class="form-control" [(ngModel)]="customer.name"
-                    #fullname="ngModel">
+                <input id="fullname" name="fullname" required type="text" class="form-control"
+                    [(ngModel)]="customer.name" #fullname="ngModel">
                 <span class="help-block" *ngIf="fullname.invalid && fullname.touched" required>
                     Full name Required
                 </span>
@@ -23,10 +23,11 @@
                 <input id="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="email" type="text"
                     class="form-control" [(ngModel)]="customer.email" #emailControl="ngModel" required>
                 <span class="help-block"
-                    *ngIf="emailControl.errors && emailControl.errors.required && emailControl.touched" >
+                    *ngIf="emailControl.errors && emailControl.errors.required && emailControl.touched">
                     Email is Required
                 </span>
-                <span class="help-block" *ngIf="emailControl.errors && emailControl.errors.pattern && emailControl.touched">
+                <span class="help-block"
+                    *ngIf="emailControl.errors && emailControl.errors.pattern && emailControl.touched">
                     Email is Invalid
                 </span>
             </div>
@@ -96,9 +97,10 @@
             </div>
 
 
-            <div class="form-group"  [class.has.error]="department.invalid && department.touched">
+            <div class="form-group" [class.has.error]="department.invalid && department.touched">
                 <label>Department</label>
-                <select #department="ngModel" class="form-control" id="department" name="department" appSelectorValidator required [(ngModel)]="customer.department">
+                <select #department="ngModel" class="form-control" id="department" name="department"
+                    appSelectorValidator required [(ngModel)]="customer.department">
                     <option [value]="-1">Select Department</option>
                     <option *ngFor="let dept of departments" [value]="dept.name">{{dept.name}}</option>
                 </select>
@@ -110,7 +112,8 @@
 
             <div class="form-group">
                 <label for="photoPath">Photo Path</label>
-                <input id="photoPath" name="photoPath" type="text" class="form-control" [(ngModel)]="customer.photoPath">
+                <input id="photoPath" name="photoPath" type="text" class="form-control"
+                    [(ngModel)]="customer.photoPath">
             </div>
 
 
@@ -134,7 +137,7 @@
     </div>
 </form>
 
- Angular generated Form: {{customerForm.value | json}}
- <br/>
- <br/>
- Our generated Form: {{customer | json}}
+Angular generated Form: {{customerForm.value | json}}
+<br />
+<br />
+Our generated Form: {{customer | json}}
